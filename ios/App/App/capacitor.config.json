@@ -1,0 +1,14 @@
+{
+	"appId": "com.fourfs.livlive",
+	"appName": "Liv'Live",
+	"webDir": "dist/public",
+	"server": {
+		"androidScheme": "https"
+	},
+	"ios": {
+		"contentInset": "always"
+	},
+	"packageClassList": [
+		"SignInWithApple"
+	]
+}
