@@ -1,7 +1,7 @@
 {
   "name": "FOMO Events",
   "short_name": "FOMO Events",
-  "description": "Discover local events from SeatGeek, Ticketmaster & Eventbrite - never miss out on concerts, sports, community events & more",
+  "description": "Discover local events and activities - never miss out on what's happening around you",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
