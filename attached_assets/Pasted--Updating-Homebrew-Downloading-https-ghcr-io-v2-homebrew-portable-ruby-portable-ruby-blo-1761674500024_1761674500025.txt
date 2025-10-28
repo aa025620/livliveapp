@@ -1,0 +1,39 @@
+==> Updating Homebrew...
+==> Downloading https://ghcr.io/v2/homebrew/portable-ruby/portable-ruby/blobs/sha256:0c78b38f22fb9b42df6918db00e6f5a80d5b35164f910ffe4c89159326ae98cf
+######################################################################################################################### 100.0%
+==> Pouring portable-ruby-3.4.5.el_capitan.bottle.tar.gz
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics
+No analytics data has been sent yet (nor will any be during this install run).
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+
+==> Next steps:
+- Run these commands in your terminal to add Homebrew to your PATH:
+    echo >> /Users/scottslover/.zprofile
+    echo 'eval "$(/usr/local/bin/brew shellenv)"' >> /Users/scottslover/.zprofile
+    eval "$(/usr/local/bin/brew shellenv)"
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+scottslover@Scotts-iMac ~ %     echo >> /Users/scottslover/.zprofile
+    echo 'eval "$(/usr/local/bin/brew shellenv)"' >> /Users/scottslover/.zprofile
+    eval "$(/usr/local/bin/brew shellenv)"
+scottslover@Scotts-iMac ~ % ruby -v
+ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.x86_64-darwin24]
+scottslover@Scotts-iMac ~ % echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+scottslover@Scotts-iMac ~ %                                                               
+scottslover@Scotts-iMac ~ % ruby -v                                                       
+ruby 2.6.10p210 (2022-04-12 revision 67958) [universal.x86_64-darwin24]
+scottslover@Scotts-iMac ~ % sudo gem install cocoapods
+Password:
+ERROR:  Error installing cocoapods:
+	The last version of securerandom (>= 0.3) to support your Ruby & RubyGems was 0.3.2. Try installing it with `gem install securerandom -v 0.3.2` and then running the current command again
+	securerandom requires Ruby version >= 3.1.0. The current ruby version is 2.6.10.210.
+scottslover@Scotts-iMac ~ % 
