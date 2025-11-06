@@ -157,24 +157,24 @@ export function EventCard({ event, onShare, onVenueClick }: EventCardProps) {
               </div>
               
                 <div className="space-y-3 relative z-50">
-                  {/* Primary action button */}
+                  {/* Primary action button with gradient */}
                   {event.ticketUrl && (
                     <Button
                       onClick={() => event.ticketUrl && window.open(event.ticketUrl, '_blank')}
                       size="lg"
                       disabled={event.ticketStatus === 'sold_out'}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground touch-target px-6 py-3 text-base w-full relative z-50"
+                      className="w-full touch-target px-6 py-4 text-base font-bold rounded-2xl relative z-50 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white shadow-lg transition-all duration-200 disabled:opacity-50"
                       title="Get Tickets"
                       data-testid={`button-tickets-${event.id}`}
                     >
-                      <Ticket className="w-4 h-4 mr-2" />
+                      <Ticket className="w-5 h-5 mr-2" />
                       {event.ticketStatus === 'sold_out' ? 'Sold Out' : 'Get Tickets'}
-                      <ExternalLink className="w-3 h-3 ml-1" />
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
                   )}
                   
-                  {/* Navigation buttons */}
-                  <div className="flex items-center justify-center space-x-2 relative z-50">
+                  {/* Secondary action buttons with labels */}
+                  <div className="grid grid-cols-2 gap-2 relative z-50">
                     <Button
                       onClick={() => {
                         const eventDate = new Date(event.date);
@@ -182,13 +182,13 @@ export function EventCard({ event, onShare, onVenueClick }: EventCardProps) {
                         const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${eventDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z/${endDate.toISOString().replace(/[-:]/g, '').split('.')[0]}Z&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
                         window.open(url, '_blank');
                       }}
-                      size="sm"
                       variant="outline"
-                      className="touch-target hover:bg-primary hover:text-primary-foreground px-3 py-2 text-sm flex-1 bg-white/10 border-white/20 text-white relative z-50"
+                      className="touch-target px-4 py-3 text-sm font-medium rounded-xl bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 transition-all duration-200 relative z-50"
                       title="Add to Calendar"
                       data-testid={`button-calendar-${event.id}`}
                     >
-                      <CalendarPlus className="w-4 h-4" />
+                      <CalendarPlus className="w-4 h-4 mr-2" />
+                      Calendar
                     </Button>
                     
                     <Button
@@ -196,38 +196,37 @@ export function EventCard({ event, onShare, onVenueClick }: EventCardProps) {
                         const query = encodeURIComponent(`${event.location} ${event.address || ''}`);
                         window.open(`https://maps.google.com/maps?q=${query}`, '_blank');
                       }}
-                      size="sm"
                       variant="outline"
-                      className="touch-target hover:bg-primary hover:text-primary-foreground px-3 py-2 text-sm flex-1 bg-white/10 border-white/20 text-white relative z-50"
+                      className="touch-target px-4 py-3 text-sm font-medium rounded-xl bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 transition-all duration-200 relative z-50"
                       title="Get Directions"
                       data-testid={`button-directions-${event.id}`}
                     >
-                      <Map className="w-4 h-4" />
+                      <Map className="w-4 h-4 mr-2" />
+                      Directions
                     </Button>
                     
                     <Button
                       onClick={() => {
-                        // Simple expand functionality - could be enhanced later
                         alert(`Event Details:\n\nTitle: ${event.title}\nDate: ${new Date(event.date).toLocaleDateString()}\nLocation: ${event.location}\nDescription: ${event.description}`);
                       }}
-                      size="sm"
                       variant="outline"
-                      className="touch-target hover:bg-primary hover:text-primary-foreground px-3 py-2 text-sm flex-1 bg-white/10 border-white/20 text-white relative z-50"
+                      className="touch-target px-4 py-3 text-sm font-medium rounded-xl bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 transition-all duration-200 relative z-50"
                       title="View Details"
                       data-testid={`button-details-${event.id}`}
                     >
-                      <Eye className="w-4 h-4" />
+                      <Eye className="w-4 h-4 mr-2" />
+                      Details
                     </Button>
                     
                     <Button
                       onClick={onShare}
-                      size="sm"
                       variant="outline"
-                      className="touch-target hover:bg-primary hover:text-primary-foreground px-3 py-2 text-sm flex-1 bg-white/10 border-white/20 text-white relative z-50"
+                      className="touch-target px-4 py-3 text-sm font-medium rounded-xl bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 transition-all duration-200 relative z-50"
                       title="Share"
                       data-testid={`button-share-${event.id}`}
                     >
-                      <Share2 className="w-4 h-4" />
+                      <Share2 className="w-4 h-4 mr-2" />
+                      Share
                     </Button>
                   </div>
               </div>
