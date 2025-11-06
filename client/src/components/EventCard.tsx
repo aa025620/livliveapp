@@ -111,50 +111,52 @@ export function EventCard({ event, onShare, onVenueClick }: EventCardProps) {
         {/* Content overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-20 pb-safe z-40">
           <div className="px-6 pb-6">
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-white">{event.title}</h3>
-              <p className="text-sm text-white/70 leading-relaxed line-clamp-3">{event.description}</p>
+            <div className="space-y-5">
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold text-white leading-tight">{event.title}</h3>
+                <p className="text-sm text-white/80 leading-relaxed line-clamp-2">{event.description}</p>
+              </div>
               
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4 text-primary" />
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
                   <button 
                     onClick={() => {
-                      // First try venue URL, then fall back to Google Maps search
                       if (event.venueUrl) {
                         window.open(event.venueUrl, '_blank');
                       } else if (event.location.toLowerCase().includes('house of blues dallas')) {
                         window.open('https://www.houseofblues.com/dallas/', '_blank');
                       } else {
-                        // Fall back to Google Maps search for venue
                         const query = encodeURIComponent(`${event.location} ${event.address || ''}`);
                         window.open(`https://maps.google.com/maps?q=${query}`, '_blank');
                       }
                     }}
-                    className="text-sm font-bold text-white hover:text-primary transition-colors duration-200 cursor-pointer text-left underline underline-offset-2"
+                    className="text-sm font-semibold text-white hover:text-primary transition-colors duration-200 cursor-pointer text-left underline underline-offset-2 truncate"
                     title={`View ${event.location} information and location`}
                     data-testid={`button-venue-${event.id}`}
                   >
                     {event.location}
                   </button>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-bold text-white">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm font-semibold text-white truncate">
                     {formatEventDate(event.date, event.time || undefined)}
                   </span>
                 </div>
               </div>
               
-              <div className="flex justify-center">
-                <div className="text-xl font-bold text-primary">
-                  {(event.price && parseFloat(event.price.toString()) > 0) ? (
-                    event.maxPrice && parseFloat(event.maxPrice.toString()) !== parseFloat(event.price.toString()) ? 
-                      `$${parseFloat(event.price.toString())} - $${parseFloat(event.maxPrice.toString())}` : 
-                      `$${parseFloat(event.price.toString())}`
-                  ) : event.price === null ? '' : 'Free'}
+              {(event.price || event.price === null || event.price === '0') && (
+                <div className="flex justify-center py-2">
+                  <div className="text-2xl font-bold text-primary">
+                    {(event.price && parseFloat(event.price.toString()) > 0) ? (
+                      event.maxPrice && parseFloat(event.maxPrice.toString()) !== parseFloat(event.price.toString()) ? 
+                        `$${parseFloat(event.price.toString())} - $${parseFloat(event.maxPrice.toString())}` : 
+                        `$${parseFloat(event.price.toString())}`
+                    ) : event.price === null ? '' : 'Free'}
+                  </div>
                 </div>
-              </div>
+              )}
               
                 <div className="space-y-3 relative z-50">
                   {/* Primary action button with gradient */}
